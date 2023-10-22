@@ -6,7 +6,7 @@ import { setRead } from '../../slice/user';
 const EmailCard = ({ email }) => {
   const dispatch = useDispatch();
   const date = new Date(email?.date);
-  const { readed } = useSelector((state) => state.user);
+  const { readed, favourites } = useSelector((state) => state.user);
 
   return (
     <article
@@ -32,7 +32,14 @@ const EmailCard = ({ email }) => {
           Subject : <b>{email?.subject}</b>
         </p>
         <p className='email__body'>{email?.short_description}</p>
-        <p className='email__timestamp'>{date.toLocaleString()}</p>
+        <p className='email__timestamp'>
+          {date.toLocaleString()}{' '}
+          {favourites.includes(email.id) ? (
+            <span className='email__fav-badge'>Favourite</span>
+          ) : (
+            ''
+          )}
+        </p>
       </div>
     </article>
   );

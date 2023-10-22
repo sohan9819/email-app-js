@@ -3,12 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deSelectEmail } from '../../slice/emailDetail';
 import { useEffect } from 'react';
 import { fetchEmailDetail } from '../../slice/emailDetail';
-import { setFavourite } from '../../slice/user';
+import { setFavourite, setRead } from '../../slice/user';
 
 const EmailDetailCard = () => {
   const { data, detail, isLoading } = useSelector((state) => state.emailDetail);
   const dispatch = useDispatch();
-  const { favourites } = useSelector((state) => state.user);
+  const { favourites, readed } = useSelector((state) => state.user);
+
+  const renderHTML = (html) => {
+    return { __html: html };
+  };
 
   useEffect(() => {
     if (data.id) {
@@ -39,6 +43,18 @@ const EmailDetailCard = () => {
                 >
                   Close
                 </button>
+                {readed.includes(data.id) ? (
+                  <button
+                    className='email__fav-btn'
+                    onClick={() => {
+                      dispatch(setRead({ type: 'unread', id: data.id }));
+                    }}
+                  >
+                    Mark as unread
+                  </button>
+                ) : (
+                  ''
+                )}
                 <button
                   className='email__fav-btn'
                   onClick={() => {
@@ -58,7 +74,11 @@ const EmailDetailCard = () => {
               </span>
             </div>
             <p className='email__timestamp'>{date.toLocaleString()}</p>
-            <p>{detail ? detail : data.short_description}</p>
+            {detail ? (
+              <div dangerouslySetInnerHTML={renderHTML(detail)} />
+            ) : (
+              <p>data.short_description </p>
+            )}
           </div>
         </>
       )}

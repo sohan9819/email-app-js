@@ -54,3 +54,9 @@
   gap: 0.8rem;
   flex-wrap: nowrap;
 }
+
+.email__fav-badge {
+  border-radius: 0.8rem;
+  background: #e54065;
+  padding: 0rem 0.4rem;
+}

@@ -52,12 +52,16 @@
 .selected .email__list {
   grid-area: list;
   width: 100%;
-  height: 100%;
-  max-height: calc(100vh - 6rem);
+  max-height: 100%;
+  /* max-height: calc(100vh - 6rem); */
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
 .container {
   display: block;
+}
+
+.email__container {
+  /* background: red; */
 }

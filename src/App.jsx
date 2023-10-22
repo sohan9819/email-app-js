@@ -69,13 +69,18 @@ function App() {
         </header>
 
         <main className={`container ${emailDetail.data ? 'selected' : ''}`}>
-          <div className='email__list'>
-            {filter === null
-              ? email.data?.map((eml) => <EmailCard key={eml.id} email={eml} />)
-              : filterEmails(email.data)?.map((eml) => (
-                  <EmailCard key={eml.id} email={eml} />
-                ))}
+          <div className='email__container'>
+            <div className='email__list'>
+              {filter === null
+                ? email.data?.map((eml) => (
+                    <EmailCard key={eml.id} email={eml} />
+                  ))
+                : filterEmails(email.data)?.map((eml) => (
+                    <EmailCard key={eml.id} email={eml} />
+                  ))}
+            </div>
           </div>
+
           {email.data && emailDetail.data ? <EmailDetailCard /> : ''}
         </main>
       </div>
