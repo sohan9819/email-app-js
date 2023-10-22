@@ -1,0 +1,55 @@
+.selected .email__detail{
+    grid-area: detail;
+    display: grid;
+    grid-template-columns: 5rem 1fr ;
+    border:2px solid rgb(54, 51, 51);
+    padding : 1rem 0.4rem;
+    border-radius: 1rem;
+    width: 100%;
+    
+  }
+  
+.email__detail{
+    display: none;
+}
+  
+
+
+.email__profile{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+.email__detail .email__profile__image{
+    margin-top: 0.4rem;
+}
+
+.email__content{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.email__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-right:2rem;
+    margin-bottom: 1rem;
+}
+
+.email__fav-btn{
+    background: #E54065;
+    padding: 0.4rem 0.6rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+.email__timestamp{
+    margin-bottom: 1rem;
+}

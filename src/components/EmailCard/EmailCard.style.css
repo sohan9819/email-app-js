@@ -1,0 +1,51 @@
+.email__card {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  border: 2px solid rgb(54, 51, 51);
+  padding: 0.4rem;
+  border-radius: 1rem;
+  width: 100%;
+}
+
+.email__profile {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.email__profile__image {
+  height: 3rem;
+  aspect-ratio: 1;
+  background: #e54065;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.email__content {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.email__info {
+  font-size: 1rem;
+}
+
+.email__body {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.email__actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: nowrap;
+}
