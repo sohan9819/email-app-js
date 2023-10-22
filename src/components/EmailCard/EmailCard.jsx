@@ -1,16 +1,20 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './EmailCard.style.css';
 import { selectEmail } from '../../slice/emailDetail';
+import { setRead } from '../../slice/user';
 
 const EmailCard = ({ email }) => {
   const dispatch = useDispatch();
-
   const date = new Date(email?.date);
+  const { readed } = useSelector((state) => state.user);
 
   return (
     <article
-      className='email__card'
+      className={`email__card ${readed.includes(email.id) ? 'readed' : ''}`}
       onClick={() => {
+        if (!readed.includes(email.id)) {
+          dispatch(setRead({ type: 'read', id: email.id }));
+        }
         dispatch(selectEmail({ ...email }));
       }}
     >
@@ -21,7 +25,7 @@ const EmailCard = ({ email }) => {
         <p className='email__info'>
           From :{' '}
           <b>
-            {email?.from?.name} {`<${email.from.email}>`}
+            {email?.from?.name} {`<${email?.from?.email}>`}
           </b>
         </p>
         <p className='email__info'>

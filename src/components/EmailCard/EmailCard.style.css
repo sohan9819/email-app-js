@@ -5,6 +5,11 @@
   padding: 0.4rem;
   border-radius: 1rem;
   width: 100%;
+  height: max-content;
+}
+
+.email__card.readed {
+  background: rgb(18, 18, 18) !important;
 }
 
 .email__profile {

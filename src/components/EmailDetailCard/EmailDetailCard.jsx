@@ -3,16 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deSelectEmail } from '../../slice/emailDetail';
 import { useEffect } from 'react';
 import { fetchEmailDetail } from '../../slice/emailDetail';
+import { setFavourite } from '../../slice/user';
 
 const EmailDetailCard = () => {
   const { data, detail, isLoading } = useSelector((state) => state.emailDetail);
   const dispatch = useDispatch();
+  const { favourites } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (data.id) {
       dispatch(fetchEmailDetail(data.id));
     }
-  }, [data.id]);
+  }, [data.id, dispatch]);
 
   const date = new Date(data?.date);
 
@@ -37,7 +39,22 @@ const EmailDetailCard = () => {
                 >
                   Close
                 </button>
-                <button className='email__fav-btn'>Mark as favorite</button>
+                <button
+                  className='email__fav-btn'
+                  onClick={() => {
+                    if (!favourites.includes(data.id)) {
+                      dispatch(
+                        setFavourite({ type: 'favourite', id: data.id })
+                      );
+                    } else {
+                      dispatch(setFavourite({ type: 'dislike', id: data.id }));
+                    }
+                  }}
+                >
+                  {favourites.includes(data.id)
+                    ? 'Marked favoutite'
+                    : 'Mark as favorite'}
+                </button>
               </span>
             </div>
             <p className='email__timestamp'>{date.toLocaleString()}</p>
